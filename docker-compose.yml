@@ -1,27 +1,62 @@
 version: '2'
 services:
     db:
-        image: mysql
+        image: postgres
         ports:
-            - "3306:3306"
+            - "5432:5432"
         environment:
-            MYSQL_ALLOW_EMPTY_PASSWORD: 123456
-            MYSQL_DATABASE: shorten_link
-    Mongo:
+            POSTGRES_PASSWORD: 1
+            POSTGRES_USER: postgres
+            POSTGRES_DB: shorten_link
+    mongo:
         image: mongo
         ports:
             - "27017:27017"
+    redis:
+        image: redis
+        ports:
+            - "6379:6379"
     backend:
         build:
             context: ../shortenLinkServer
             dockerfile: Dockerfile
         restart: unless-stopped
         environment: 
+            - PORT=8080
+            - DB_USERNAME=postgres
+            - DB_PASSWORD=1
+            - DB_NAME=shorten_link
             - DB_HOST=host.docker.internal
-        # ports:
-        #     - 8080:8080
+            - DB_DIALECT=postgres
+            - NODE_ENV=production
+            - MONGODB_URL=mongodb://host.docker.internal:27017/shorten_link
+            - REDIS_HOST=redis
+            - JWT_SECRET=1
+            - JWT_EXPIRES_IN=24h
+            - REACT_URL=http://localhost/
+            - GOOGLE_CLIENT_ID=805934574997-bd9v031en51211shhuulidl3v0ejf6r2.apps.googleusercontent.com
+            - GOOGLE_CLIENT_SECRET=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
+        ports:
+            - 8080:8080
+        depends_on:
+            - redis
         expose:
             - 8080
+    redirector:
+        build:
+            context: ../shortenLinkRedirector
+            dockerfile: Dockerfile
+        restart: unless-stopped
+        environment: 
+            - PORT=8081
+            - STORE_SERVICE_URL=http://localhost:8080/
+            - STORE_SERVICE_VISIT=http://localhost:8080/link/visit/
+            - MONGODB_URL=mongodb://host.docker.internal/shorten_link
+            - REDIS_HOST=redis
+        ports:
+            - 8081:8081
+        depends_on:
+            - redis
     nginx:
         image: nginx:1.23.3
         ports:

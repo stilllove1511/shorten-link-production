@@ -2,20 +2,14 @@ version: '2'
 services:
     db:
         image: postgres
-        ports:
-            - "5432:5432"
         environment:
             POSTGRES_PASSWORD: 1
             POSTGRES_USER: postgres
             POSTGRES_DB: shorten_link
     mongo:
         image: mongo
-        ports:
-            - "27017:27017"
     redis:
         image: redis
-        ports:
-            - "6379:6379"
     backend:
         build:
             context: ../shortenLinkServer
@@ -30,21 +24,21 @@ services:
             - DB_HOST=db
             - DB_DIALECT=postgres
             - NODE_ENV=production
-            - MONGODB_URL=mongodb://mongo:27017/shorten_link
-            - REDIS_URL=redis://redis:6379
+            - MONGODB_URL=mongodb://mongo/shorten_link
+            - REDIS_URL=redis://redis
             - JWT_SECRET=1
             - JWT_EXPIRES_IN=24h
             - REACT_URL=http://localhost/
             - GOOGLE_CLIENT_ID=805934574997-bd9v031en51211shhuulidl3v0ejf6r2.apps.googleusercontent.com
             - GOOGLE_CLIENT_SECRET=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
-        ports:
-            - 8080:8080
+        # ports:
+        #     - 8080:8080
         depends_on:
             - db
             - redis
             - mongo
-        expose:
-            - 8080
+        # expose:
+        #     - 8080
     redirector:
         build:
             context: ../shortenLinkRedirector
@@ -53,10 +47,10 @@ services:
         restart: unless-stopped
         environment: 
             - PORT=8081
-            - STORE_SERVICE_URL=http://backend:8080/
-            - STORE_SERVICE_VISIT=http://backend:8080/link/visit/
+            - STORE_SERVICE_URL=http://backend/
+            - STORE_SERVICE_VISIT=http://backend/link/visit/
             - MONGODB_URL=mongodb://mongo/shorten_link
-            - REDIS_URL=redis://redis:6379
+            - REDIS_URL=redis://redis
         ports:
             - 8081:8081
         depends_on:

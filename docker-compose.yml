@@ -26,9 +26,9 @@ services:
             - NODE_ENV=production
             - MONGODB_URL=mongodb://mongo/shorten_link
             - REDIS_URL=redis://redis
-            - JWT_SECRET=1
-            - JWT_EXPIRES_IN=24h
-            - REACT_URL=http://localhost/
+            - JWT_SECRET=doanhdoanduoc_secret     # notice to this
+            - JWT_EXPIRES_IN=720h
+            - REACT_URL=http://localhost/         # change this
             - GOOGLE_CLIENT_ID=805934574997-bd9v031en51211shhuulidl3v0ejf6r2.apps.googleusercontent.com
             - GOOGLE_CLIENT_SECRET=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
         # ports:

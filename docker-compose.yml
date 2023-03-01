@@ -31,14 +31,10 @@ services:
             - REACT_URL=http://localhost/         # change this
             - GOOGLE_CLIENT_ID=805934574997-bd9v031en51211shhuulidl3v0ejf6r2.apps.googleusercontent.com
             - GOOGLE_CLIENT_SECRET=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
-        # ports:
-        #     - 8080:8080
         depends_on:
             - db
             - redis
             - mongo
-        # expose:
-        #     - 8080
     redirector:
         build:
             context: ../shortenLinkRedirector

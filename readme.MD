@@ -18,11 +18,4 @@ then config ssh clone
 mkdir -p ~/.ssh
 ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
 ```
-add key to listen
-```
-ssh-keygen -l -f [key-file]
-```
-example
-```
-ssh-keygen -l -f ~/.ssh/[reanamed]
-```
+change config (view tutorial on deploys key multiple repo)

@@ -29,7 +29,7 @@ services:
             - JWT_SECRET=doanhdoanduoc_secret     # notice to this
             - JWT_EXPIRES_IN=720h
             - REACT_URL=http://localhost/         # change this
-            - BACK_END_URL=http://localhost/api/
+            - BACK_END_URL=http://localhost/api/  # change this
             - GOOGLE_CLIENT_ID=805934574997-bd9v031en51211shhuulidl3v0ejf6r2.apps.googleusercontent.com
             - GOOGLE_CLIENT_SECRET=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
         depends_on:
@@ -46,7 +46,7 @@ services:
         restart: unless-stopped
         environment: 
             - PORT=8081
-            - STORE_SERVICE_URL=http://backend:8080/
+            - STORE_SERVICE_URL=http://backend:8080/ 
             - STORE_SERVICE_VISIT=http://backend:8080/link/visit/
             - MONGODB_URL=mongodb://mongo/shorten_link
             - REDIS_URL=redis://redis

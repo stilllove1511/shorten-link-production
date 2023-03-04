@@ -26,10 +26,10 @@ services:
             - NODE_ENV=production
             - MONGODB_URL=mongodb://mongo/shorten_link
             - REDIS_URL=redis://redis
-            - JWT_SECRET=doanhdoanduoc_secret     # notice to this
+            - JWT_SECRET=xkA1siXB+m2m+/kaK2MATA   
             - JWT_EXPIRES_IN=720h
-            - REACT_URL=http://localhost/         # change this
-            - BACK_END_URL=http://localhost/api/  # change this
+            - REACT_URL=http://54.169.52.161/        
+            - BACK_END_URL=http://54.169.52.161/api/  
             - GOOGLE_CLIENT_ID=805934574997-bd9v031en51211shhuulidl3v0ejf6r2.apps.googleusercontent.com
             - GOOGLE_CLIENT_SECRET=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
         depends_on:

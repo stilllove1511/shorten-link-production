@@ -13,3 +13,7 @@ config ssh clone
 mkdir -p ~/.ssh
 ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
 ```
+add key to listen
+```
+ssh-keygen -l -f [key-file]
+```

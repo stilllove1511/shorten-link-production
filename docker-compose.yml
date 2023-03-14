@@ -4,7 +4,7 @@ services:
         image: mysql
         environment:
             MYSQL_DATABASE: shorten-link
-            MYSQL_ALLOW_EMPTY_PASSWORD: yes
+            MYSQL_ROOT_PASSWORD: xkA1siXB
         ports: 
             - 3306:3306
     backend:
@@ -16,6 +16,7 @@ services:
         environment: 
             - PORT=8080
             - DB_USERNAME=root
+            - DB_PASSWORD=xkA1siXB
             - DB_NAME=shorten-link
             - DB_HOST=db
             - DB_DIALECT=mysql

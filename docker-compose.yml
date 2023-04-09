@@ -23,8 +23,8 @@ services:
             - NODE_ENV=production
             - JWT_SECRET=xkA1siXB+m2m+/kaK2MATA   
             - JWT_EXPIRES_IN=720h
-            - REACT_URL=http://plink.monster/        
-            - BACK_END_URL=http://plink.monster/api/
+            - REACT_URL=http://backend-env.eba-nq3xkju3.us-east-1.elasticbeanstalk.com/        
+            - BACK_END_URL=http://backend-env.eba-nq3xkju3.us-east-1.elasticbeanstalk.com/api/
             - GOOGLE_CLIENT_ID=805934574997-bd9v031en51211shhuulidl3v0ejf6r2.apps.googleusercontent.com
             - GOOGLE_CLIENT_SECRET=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
         depends_on:

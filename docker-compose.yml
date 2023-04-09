@@ -63,5 +63,5 @@ services:
         volumes:
             - ../shortenLinkClient/build/:/usr/share/nginx/html
             - ./default.conf:/etc/nginx/conf.d/default.conf
-         depends_on:
+        depends_on:
             - backend
